@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+
+// a class to hold some data and methods common to RecordTabFragment and ListTabFragment
 public class TabFragment extends Fragment {
     protected static final String ARG_SECTION_NUMBER = "section_number";
 

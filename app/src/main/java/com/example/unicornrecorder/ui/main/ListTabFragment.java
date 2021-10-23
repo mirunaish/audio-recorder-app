@@ -14,9 +14,6 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.unicornrecorder.MainActivity;
 import com.example.unicornrecorder.R;
 
-import java.io.File;
-import java.util.ArrayList;
-
 
 public class ListTabFragment extends TabFragment {
 
@@ -38,7 +35,6 @@ public class ListTabFragment extends TabFragment {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
         pageViewModel.setIndex(index);
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -46,19 +42,17 @@ public class ListTabFragment extends TabFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.listfragment, container, false); //we should look like listfragment.xml
 
-        // create an adaptor that handles the list of recordings for the listview
-        // a dali lab member suggested that i use a listview and an adapter during an app workshop
-        // used this https://www.journaldev.com/10416/android-listview-with-custom-adapter-example-tutorial
+        AdapterFileList fileWrapper = ((MainActivity)getActivity()).getAdapterWrapper();  // get the adapter + file object from mainActivity
+        fileWrapper.createAdapter(root.getContext(), this);  // create the adapter inside the object
 
-        ArrayList<FileListElement> fileListElements = new ArrayList<>();  // the array of FileListElements the adapter will handle
-        for (File file : ((MainActivity)getActivity()).getFileList()) {   // the audio files saved by the recordTabFragment, retrieved from storage
-            fileListElements.add(new FileListElement(file));
-        }
-
-        ListView listView = root.findViewById(R.id.file_list);
-        listView.setAdapter(new FileListElementAdapter(root.getContext(), fileListElements));  // create adapter for listView
+        ListView listView = root.findViewById(R.id.file_list);  // this is where the files will be listed
+        listView.setAdapter(fileWrapper.getAdapter());  // get adapter and pass it to listView
 
         return root;
+    }
+
+    public void removeElement(FileListElement element) {
+        ((MainActivity)getActivity()).getAdapterWrapper().removeElement(element);
     }
 
 }

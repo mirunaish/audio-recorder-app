@@ -1,6 +1,5 @@
 package com.example.unicornrecorder.ui.main;
 
-import android.Manifest;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
@@ -38,13 +37,9 @@ public class RecordTabFragment extends TabFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.recordfragment, container,false);  // defines the look of the tab
 
-        // needs permission to store audio files in storage
-        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 29);
-
         recordButton = root.findViewById(R.id.record); recordButton.setEnabled(false);
         stopButton = root.findViewById(R.id.stop); stopButton.setEnabled(false);
-        infoTextBox = root.findViewById(R.id.text0);
-        infoTextBox.setText(R.string.start);
+        infoTextBox = root.findViewById(R.id.text0); infoTextBox.setText(R.string.start);
 
         uRecorder = new MediaRecorder();
 
@@ -52,7 +47,7 @@ public class RecordTabFragment extends TabFragment {
             @Override
             public void onClick(View root) {
 
-                prepareRecorder();
+                prepareRecorder();  // set audio input, file output path, etc
 
                 recordButton.setEnabled(false);
 
@@ -60,6 +55,7 @@ public class RecordTabFragment extends TabFragment {
                     uRecorder.prepare();
                     uRecorder.start();
                     infoTextBox.setText(R.string.recording);
+                    stopButton.setEnabled(true);
                 } catch (IllegalStateException e) {
                     infoTextBox.setText(R.string.error);
                     e.printStackTrace();
@@ -67,10 +63,6 @@ public class RecordTabFragment extends TabFragment {
                     infoTextBox.setText(R.string.error);
                     e.printStackTrace();
                 }
-
-                stopButton.setEnabled(true);
-
-
             }
         });
 
@@ -81,7 +73,7 @@ public class RecordTabFragment extends TabFragment {
                 uRecorder.stop();
                 uRecorder.reset();
 
-                ((MainActivity)getActivity()).addFile(currentPath);
+                ((MainActivity)getActivity()).getAdapterWrapper().addFile(currentPath);  // add recorded file to the file list
 
                 infoTextBox.setText(R.string.done);
                 recordButton.setEnabled(true);

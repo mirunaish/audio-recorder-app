@@ -1,43 +1,36 @@
 package com.example.unicornrecorder.ui.main;
 
-import android.media.MediaPlayer;
+import android.widget.ImageButton;
 
 import java.io.File;
-import java.io.IOException;
 
+// contains the data the adapter needs to display a row in the list
 public class FileListElement {
 
     private File file;
-    private MediaPlayer mp;
+    private ImageButton playButton;  // need this to change the image in the button
 
     public FileListElement(File file) {  // sets the content layout
         this.file=file;
     }
 
-    public void initMediaPlayer() {
-        mp = new MediaPlayer();
-        try {
-            mp.setDataSource(file.getAbsolutePath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void setButton(ImageButton button) {
+        playButton = button;
     }
 
-    public void setFile(String path) {
-        file = new File(path);
-        initMediaPlayer();
+    public void delete() {
+        file.delete();
     }
-
-    public void play() {
-        try {
-            mp.prepare();
-            mp.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void delete() { file.delete(); }
 
     public String getName() { return file.getName(); }
+
+    public String getPath() { return file.getAbsolutePath(); }
+
+    public void changeToStop() {  // change button icon
+        playButton.setImageResource(android.R.drawable.star_off);
+    }
+
+    public void changeToPlay() {
+        playButton.setImageResource(android.R.drawable.ic_media_play);
+    }
 }

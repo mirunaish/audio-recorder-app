@@ -31,7 +31,7 @@
         android:layout_marginRight="11dp"
         android:background="#FFFFFF"
         android:contentDescription="@string/delete_button_description"
-        app:srcCompat="@android:drawable/ic_media_play"
+        app:srcCompat="@android:drawable/ic_menu_delete"
         tools:layout_editor_absoluteX="342dp"
         tools:layout_editor_absoluteY="12dp"
         tools:srcCompat="@android:drawable/ic_menu_delete" />

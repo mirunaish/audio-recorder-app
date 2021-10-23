@@ -11,14 +11,14 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.unicornrecorder.R;  // resources
 
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class TabAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
-    private final Context mContext; // main activity is the context
+    private final Context mContext;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
-        super(fm);  // it wasn't deprecated when i coded this...
+    public TabAdapter(Context context, FragmentManager fm) {
+        super(fm);  // i'm pretty sure it wasn't deprecated when i coded this
         mContext = context;
     }
 
@@ -26,7 +26,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         //returns a fragment based on the tab number
-        if (position==0) return RecordTabFragment.newInstance(position+1);  // calls static method that creates the record tab fragment
+        if (position==0) return RecordTabFragment.newInstance(position+1);  // calls static method that creates the requested tab fragment
         else return ListTabFragment.newInstance(position+1);
     }
 
@@ -38,7 +38,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // 2 pages in total
+        // 2 pages in total, recordtab and listtab
         return 2;
     }
 }
