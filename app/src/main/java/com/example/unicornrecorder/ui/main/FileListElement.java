@@ -27,7 +27,7 @@ public class FileListElement {
     public String getPath() { return file.getAbsolutePath(); }
 
     public void changeToStop() {  // change button icon
-        playButton.setImageResource(android.R.drawable.star_off);
+        playButton.setImageResource(android.R.drawable.checkbox_off_background);
     }
 
     public void changeToPlay() {

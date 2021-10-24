@@ -1,8 +1,3 @@
-// TODO permissions
-// TODO change stop icon
-// TODO test mkdirs in recordtabfragment
-// TODO icon changes back before audio playback ends? emulator performance issue or bug?
-
 package com.example.unicornrecorder;
 
 import android.Manifest;
@@ -51,5 +46,4 @@ public class MainActivity extends AppCompatActivity {
     public AdapterFileList getAdapterWrapper() {
         return adapterWrapper;
     }
-
 }

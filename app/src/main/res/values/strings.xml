@@ -3,13 +3,15 @@
     <string name="tab_text_1">record</string>
     <string name="tab_text_2">list</string>
 
-    <string name="rbutton">record</string>
-    <string name="sbutton">stop</string>
+    <string name="record_button">record</string>
+    <string name="stop_button">stop</string>
+
+    <string name="delete_button_description">delete button</string>
+    <string name="play_button_description">play button</string>
+
     <string name="start">ready to record?</string>
     <string name="recording">recording…</string>
     <string name="done">recording saved.</string>
 
     <string name="error">something went wrong…</string>
-    <string name="delete_button_description">delete button</string>
-    <string name="play_button_description">play button</string>
 </resources>

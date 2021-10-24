@@ -18,6 +18,7 @@
         android:layout_marginStart="70dp"
         android:layout_marginLeft="70dp"
         android:layout_marginTop="11dp"
+        android:textColor="@color/colorPrimaryDark"
         tools:layout_alignParentTop="true" />
 
     <ImageButton
@@ -29,8 +30,9 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="11dp"
         android:layout_marginRight="11dp"
-        android:background="#FFFFFF"
+        android:background="#00FFFFFF"
         android:contentDescription="@string/delete_button_description"
+        android:tint="@color/colorPrimary"
         app:srcCompat="@android:drawable/ic_menu_delete"
         tools:layout_editor_absoluteX="342dp"
         tools:layout_editor_absoluteY="12dp"
@@ -43,9 +45,11 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="350dp"
-        android:layout_marginRight="350dp"
+        android:layout_marginEnd="325dp"
+        android:layout_marginRight="325dp"
+        android:background="#00FFFFFF"
         android:contentDescription="@string/play_button_description"
+        android:tint="@color/colorPrimary"
         app:srcCompat="@android:drawable/ic_media_play"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="13dp" />

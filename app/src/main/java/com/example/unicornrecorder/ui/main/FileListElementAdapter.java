@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 
 // adapter handles the list of recordings for the listview
-// a dali lab member suggested that i use a listview and an adapter during an app workshop
+// dali lab member Pape suggested that i use a listview and an adapter during an app workshop
 // used this https://www.journaldev.com/10416/android-listview-with-custom-adapter-example-tutorial
 public class FileListElementAdapter extends ArrayAdapter<FileListElement> implements View.OnClickListener {
 
@@ -40,8 +40,14 @@ public class FileListElementAdapter extends ArrayAdapter<FileListElement> implem
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                playingElement.changeToPlay();
-                playingElement=null;
+                try {
+                    playingElement.changeToPlay();
+                    playingElement=null;
+                } catch (NullPointerException e) {
+                    // someone changed playingElement to null right as onCompletion was called.
+                    // do nothing
+                }
+
             }
         });
     }
